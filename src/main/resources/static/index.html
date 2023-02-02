@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Fullstack Example</title>
+</head>
+<body>
+<h1>Day One Fulstack Demo</h1>
+<button id="btn-load">Load Players</button>
+<ul id="players-here"></ul>
+
+<script type="application/javascript">
+    document.getElementById("btn-load").onclick = getPlayers;
+
+
+    function getPlayers() {
+        fetch("api/players")
+            .then(res => res.json())
+            .then(data => {
+                const listItems = data.map(p => `<li>${p.id} - ${p.name}</li>`)
+                document.getElementById("players-here").innerHTML = listItems.join("\n")
+            })
+    }
+
+
+</script>
+
+</body>
+</html>
